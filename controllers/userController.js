@@ -63,7 +63,7 @@ exports.log_in_user = asyncHandler(async (req, res, next)=>{
     if(!match){
       res.json({ message: null})
     }
-    jwt.sign({ user }, 'mysecretkey', (err, token) =>{
+    jwt.sign({ user }, 'mysecretkey', { expiresIn: '2 days'}, (err, token) =>{
         res.json({
             message: token
         })

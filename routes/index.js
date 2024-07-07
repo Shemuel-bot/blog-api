@@ -18,7 +18,7 @@ router.post('/api/log-in',  userController.log_in_user);
 
 router.post('/api/post', verifyToken, postController.blog_post);
 
-router.get('/api/all-posts', postController.blogs_get);
+router.get('/api/all-posts', verifyToken, postController.blogs_get);
 
 router.get('/api/all-users', userController.get_users);
 
