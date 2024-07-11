@@ -30,7 +30,6 @@ exports.post_comment = [
                     res.json({ errors: errors})
                 }else{
                     await comment.save();
-                    res.json({ message: 'post made...'})
                 }
             }
         })
@@ -38,8 +37,8 @@ exports.post_comment = [
 ];
 
 exports.get_all_comments = asyncHandler(async (req, res, next) => {
-    const comments = await Comment.find();
+    const comments = await Comment.find({ user: req.body.id});
     res.json({
-        comments: comments,
-    });
+        comments
+    })
 });

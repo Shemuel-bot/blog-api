@@ -8,6 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const jwt = require('jsonwebtoken');
 const user = require('../models/user');
+const { token } = require('morgan');
 
 exports.blog_post = [
     body('title', 'Title must not be empty')
@@ -23,18 +24,21 @@ exports.blog_post = [
     asyncHandler(async (req, res, next) => {
         jwt.verify(req.token, 'mysecretkey', async (err, authData) => {
             if (err) {
+                
                 res.send(403); 
             }else{
-                const errors = validationResult(req);
 
+                const errors = validationResult(req);
                 const post = new Post({
                     title: req.body.title,
                     content: req.body.content,
                     timeStamp: new Date().toISOString().split('T')[0],
-                    user: authData.user
+                    user: authData.user.userName
                 })
 
                 if(!errors.isEmpty()){
+
+                    console.log(errors);
                     res.json({ errors: errors})
                 }else{
                     await post.save();
