@@ -22,24 +22,25 @@ router.get('/api/all-posts', verifyToken, postController.blogs_get);
 
 router.get('/api/all-users', userController.get_users);
 
-router.get('/api/posts-comments', commentController.get_all_comments);
+router.post('/api/posts-comments',  commentController.get_all_comments);
 
-router.post('/api/post-comment', commentController.post_comment);
+router.post('/api/post-comment', verifyToken, commentController.post_comment);
 
 
 function verifyToken (req, res, next){
   const bearerHeader = req.headers['authorization'];
   
-  if(typeof bearerHeader !== 'undefined'){
+if(typeof bearerHeader !== 'undefined' &&  bearerHeader !== 'null'){
 
     const bearer = bearerHeader.split(' ');
    
     const bearerToken = bearer[1];
-
+  
     req.token = bearerToken;
-
+    
     next();
   }else{
+      
     res.send(403);
   }
 }

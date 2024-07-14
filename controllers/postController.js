@@ -37,8 +37,6 @@ exports.blog_post = [
                 })
 
                 if(!errors.isEmpty()){
-
-                    console.log(errors);
                     res.json({ errors: errors})
                 }else{
                     await post.save();
