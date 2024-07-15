@@ -14,6 +14,8 @@ router.get('/api', function(req, res, next) {
 
 router.post('/api/sign-up', userController.create_user);
 
+router.get('/api/sign-up', userController.create_user);
+
 router.post('/api/log-in',  userController.log_in_user);
 
 router.post('/api/post', verifyToken, postController.blog_post);

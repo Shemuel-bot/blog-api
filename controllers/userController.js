@@ -34,11 +34,10 @@ exports.create_user = [
           userName: req.body.userName,
           password: req.body.password,
         });
-        
     
         await bycrypt.hash(req.body.password, 10)
                 .then(hash =>{user.password = hash})
-                .catch(err => {console.log(err.message)})
+                .catch(err => {res.json({err: err.message})})
 
         if(!errors.isEmpty()){
             res.json({
