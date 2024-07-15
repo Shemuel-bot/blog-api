@@ -50,6 +50,19 @@ exports.create_user = [
     }),
 ];
 
+exports.user_names_match = asyncHandler(async (req, res)=>{
+  jwt.verify(req.token, 'mysecretkey', async (err, authData) => {
+      if (err) {
+          
+          res.send(403); 
+      }else{
+          if(req.body.userName === authData.user.userName){
+              res.json({value: true});
+          }
+          res.json({value: false});
+      }
+  })
+});
 
 
 

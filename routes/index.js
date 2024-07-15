@@ -20,7 +20,11 @@ router.post('/api/post', verifyToken, postController.blog_post);
 
 router.get('/api/all-posts', verifyToken, postController.blogs_get);
 
+router.post('/api/delete-post', postController.delete);
+
 router.get('/api/all-users', userController.get_users);
+
+router.post('/api/match-name', verifyToken, userController.user_names_match);
 
 router.post('/api/posts-comments',  commentController.get_all_comments);
 

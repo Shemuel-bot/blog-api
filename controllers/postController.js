@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const jwt = require('jsonwebtoken');
 const user = require('../models/user');
 const { token } = require('morgan');
+const { ObjectId } = require('mongodb');
 
 exports.blog_post = [
     body('title', 'Title must not be empty')
@@ -47,6 +48,8 @@ exports.blog_post = [
     }),
 ]
 
+
+
 exports.blogs_get = asyncHandler(async (req, res, next) => {
     const posts = await Post.find();
 
@@ -54,3 +57,8 @@ exports.blogs_get = asyncHandler(async (req, res, next) => {
         posts: posts
     })
 });
+
+exports.delete = asyncHandler(async (req, res, next) => {
+    await Post.deleteOne({ _id: ObjectId.createFromHexString(req.body.id)});
+    res.json({message: 'post deleted'})
+})
