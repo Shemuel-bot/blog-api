@@ -12,7 +12,7 @@ router.get('/api', function(req, res, next) {
 });
 
 
-router.post('/api/sign-up', userController.create_user);
+router.put('/api/sign-up', userController.create_user);
 
 router.get('/api/sign-up', userController.create_user);
 
