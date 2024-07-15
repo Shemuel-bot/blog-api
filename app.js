@@ -18,7 +18,7 @@ const mongoDB = "mongodb+srv://admin:Endgame33@cluster0.lr9zwan.mongodb.net/?ret
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect( process.env.DATABASE_URL || mongoDB);
 }
 
 // view engine setup

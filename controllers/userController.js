@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/user.js');
 
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
