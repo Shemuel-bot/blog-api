@@ -1,4 +1,4 @@
-# Blog frontend
+# Blog backend
 
 https://blog-api-website1.vercel.app/
 ## About
